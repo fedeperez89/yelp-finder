@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SonyTakeHome</string>
+    <string name="search_business">Search for a Business</string>
+    <string name="nothing_to_show">Nothing to show</string>
+</resources>
