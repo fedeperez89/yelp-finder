@@ -65,7 +65,7 @@ data class BusinessDetail(
     val display_phone: String,
     val review_count: Int,
     val categories: List<Categories>?,
-    val rating: Double,
+    val rating: Float,
     val location: Location,
     val coordinates: Coordinates,
     val photos: List<String>?,
