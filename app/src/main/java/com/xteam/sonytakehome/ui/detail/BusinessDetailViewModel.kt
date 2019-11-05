@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.xteam.sonytakehome.model.BusinessDetail
 import com.xteam.sonytakehome.repository.BusinessRepository
+import com.xteam.sonytakehome.repository.Status
 import com.xteam.sonytakehome.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,8 +26,12 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
     fun setBusinessId(businessId: String) {
         viewModelScope.launch {
             _dataLoading.postValue(true)
-            val result = convertBusinessModelToUI(businessRepository.businessDetails(businessId))
-            _business.postValue(result)
+            val result = businessRepository.businessDetails(businessId)
+            when(result.status){
+                Status.SUCCESS -> _business.postValue(convertBusinessModelToUI(result.data!!))
+                Status.ERROR -> _business.postValue(null)
+            }
+
             _dataLoading.postValue(false)
         }
     }

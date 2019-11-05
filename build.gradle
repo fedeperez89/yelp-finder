@@ -7,7 +7,6 @@ buildscript {
         nav_version = "2.1.0"
         kotlinCoroutineVersion = "1.3.2"
         moshiVersion = "1.9.0"
-        room_version = "2.2.1"
     }
 
     repositories {

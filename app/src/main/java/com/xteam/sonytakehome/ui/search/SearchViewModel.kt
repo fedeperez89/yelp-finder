@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.xteam.sonytakehome.model.Business
 import com.xteam.sonytakehome.repository.BusinessRepository
+import com.xteam.sonytakehome.repository.Status
 import com.xteam.sonytakehome.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +28,11 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
         viewModelScope.launch {
             _dataLoading.postValue(true)
             val result = businessRepository.searchBusiness(query)
-            businesses.postValue(result.businesses)
+            when(result.status){
+                Status.SUCCESS -> businesses.postValue(result.data!!.businesses)
+                Status.ERROR -> businesses.postValue(listOf())
+            }
+
             _dataLoading.postValue(false)
         }
     }
