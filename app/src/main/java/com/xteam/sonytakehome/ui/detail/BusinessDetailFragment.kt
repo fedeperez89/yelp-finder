@@ -24,6 +24,7 @@ class BusinessDetailFragment : DaggerFragment() {
 
 
     private lateinit var viewDataBinding: FragmentBusinessDetailBinding
+    private lateinit var imageAdapter: ImagePagerAdapter
 
     private val args: BusinessDetailFragmentArgs by navArgs()
 
@@ -47,8 +48,16 @@ class BusinessDetailFragment : DaggerFragment() {
         viewModel.setBusinessId(args.businessId)
 
         setUpEvent()
+        setupListAdapter()
     }
 
+    private fun setupListAdapter() {
+        val viewModel = viewDataBinding.viewmodel
+        if (viewModel != null) {
+            imageAdapter = ImagePagerAdapter(context!!, mutableListOf())
+            viewDataBinding.detailViewPager.adapter = imageAdapter
+        }
+    }
 
     private fun setUpEvent() {
         viewModel.callEvent.observe(this, EventObserver {

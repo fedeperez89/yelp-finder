@@ -25,11 +25,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/detail_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/yelp_logo"
-                app:picassoImage="@{viewmodel.business.image_url}" />
+                app:pagerItems="@{viewmodel.business.photos}" />
 
             <RatingBar
                 android:id="@+id/item_business_rating"
