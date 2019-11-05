@@ -19,6 +19,7 @@ import com.xteam.sonytakehome.util.EventObserver
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
+
 class SearchFragment : DaggerFragment() {
 
     @Inject
@@ -72,7 +73,11 @@ class SearchFragment : DaggerFragment() {
         val viewModel = viewDataBinding.viewmodel
         if (viewModel != null) {
             listAdapter = BusinessAdapter(viewModel)
-            viewDataBinding.businessList.adapter = listAdapter
+
+            viewDataBinding.businessList.apply {
+                setHasFixedSize(true)
+                adapter = listAdapter
+            }
         }
     }
 

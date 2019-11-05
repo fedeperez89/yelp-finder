@@ -12,6 +12,6 @@ class BusinessRepository @Inject constructor(
 
     suspend fun businessDetails(id: String) = yelpService.businessDetails(id)
 
-    suspend fun searchBusiness(query: String) = yelpService.search(query, 42.9f, -122f)
+    suspend fun searchBusiness(query: String) = yelpService.search(query, 42.9f, -122f, 50)
 
 }

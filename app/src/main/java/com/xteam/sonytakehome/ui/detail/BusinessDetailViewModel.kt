@@ -41,7 +41,7 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
         val photos = model.photos.orEmpty()
         val category = model.categories?.firstOrNull()?.title ?: ""
         val address = model.location.let {
-            "${it.address1}, ${it.address2}, ${it.city}"
+            "${it.address1}, ${it.city}, ${it.zip_code}"
         }
         val price = model.price ?: "???"
         return BusinessDetailPresentationObject(

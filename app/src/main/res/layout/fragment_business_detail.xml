@@ -14,91 +14,107 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/detail_view_pager"
+        <ProgressBar
+            android:id="@+id/load_more_bar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:pagerItems="@{viewmodel.business.photos}" />
-
-        <RatingBar
-            android:id="@+id/detail_rating"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
-            android:rating="@{viewmodel.business.rating}"
-            android:stepSize="0.5"
-            app:layout_constraintStart_toStartOf="@+id/detail_price"
-            app:layout_constraintTop_toBottomOf="@+id/detail_name" />
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:visibleGone="@{viewmodel.dataLoading}" />
 
-        <TextView
-            android:id="@+id/detail_name"
-            style="@style/Title"
-            android:layout_marginTop="10dp"
-            android:text="@{viewmodel.business.name}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_view_pager"
-            tools:text="Tony Pizza" />
-
-        <TextView
-            android:id="@+id/detail_number_reviews"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@{@string/reviews(viewmodel.business.reviews)}"
-            app:layout_constraintStart_toEndOf="@+id/detail_rating"
-            app:layout_constraintTop_toTopOf="@+id/detail_rating"
-            tools:text="54 reviews" />
-
-        <TextView
-            android:id="@+id/detail_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{@string/price_range(viewmodel.business.price)}"
-            app:layout_constraintStart_toStartOf="@+id/detail_name"
-            app:layout_constraintTop_toBottomOf="@+id/detail_rating"
-            tools:text="Price $$$" />
-
-        <TextView
-            android:id="@+id/detail_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@{viewmodel.business.category}"
-            app:layout_constraintStart_toStartOf="@+id/detail_price"
-            app:layout_constraintTop_toBottomOf="@+id/detail_price"
-            tools:text="Pizza" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibleGone="@{!viewmodel.dataLoading}">
 
 
-        <TextView
-            android:id="@+id/detail_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@{viewmodel.business.address}"
-            app:layout_constraintStart_toStartOf="@+id/detail_category"
-            app:layout_constraintTop_toBottomOf="@+id/detail_category"
-            tools:text="123 Fake Street, City" />
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/detail_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:pagerItems="@{viewmodel.business.photos}" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:onClick="@{() -> viewmodel.callBusiness()}"
-            android:src="@android:drawable/ic_menu_call"
-            android:tint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <RatingBar
+                android:id="@+id/detail_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="@{viewmodel.business.rating}"
+                android:stepSize="0.5"
+                app:layout_constraintStart_toStartOf="@+id/detail_price"
+                app:layout_constraintTop_toBottomOf="@+id/detail_name" />
+
+            <TextView
+                android:id="@+id/detail_name"
+                style="@style/Title"
+                android:layout_marginTop="10dp"
+                android:text="@{viewmodel.business.name}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_view_pager"
+                tools:text="Tony Pizza" />
+
+            <TextView
+                android:id="@+id/detail_number_reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{@string/reviews(viewmodel.business.reviews)}"
+                app:layout_constraintStart_toEndOf="@+id/detail_rating"
+                app:layout_constraintTop_toTopOf="@+id/detail_rating"
+                tools:text="54 reviews" />
+
+            <TextView
+                android:id="@+id/detail_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.business.price}"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/detail_name"
+                app:layout_constraintTop_toBottomOf="@+id/detail_rating"
+                tools:text="$$$" />
+
+            <TextView
+                android:id="@+id/detail_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{viewmodel.business.category}"
+                app:layout_constraintStart_toStartOf="@+id/detail_price"
+                app:layout_constraintTop_toBottomOf="@+id/detail_price"
+                tools:text="Pizza" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/detail_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{viewmodel.business.address}"
+                app:layout_constraintStart_toStartOf="@+id/detail_category"
+                app:layout_constraintTop_toBottomOf="@+id/detail_category"
+                tools:text="123 Fake Street, City" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="@{() -> viewmodel.callBusiness()}"
+                android:src="@android:drawable/ic_menu_call"
+                android:tint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 
 </layout>

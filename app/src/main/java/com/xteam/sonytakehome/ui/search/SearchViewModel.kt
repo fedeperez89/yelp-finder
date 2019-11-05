@@ -21,6 +21,7 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
 
     private val _openBusinessEvent = MutableLiveData<Event<Business>>()
     val openBusinessEvent: LiveData<Event<Business>> = _openBusinessEvent
+    
 
     fun setSearchQuery(query: String) {
         viewModelScope.launch {

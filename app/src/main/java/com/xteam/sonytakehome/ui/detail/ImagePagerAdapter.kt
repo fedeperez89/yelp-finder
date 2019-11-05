@@ -20,7 +20,7 @@ fun setPagerItems(pager: ViewPager, items: List<String>?) {
 }
 
 class ImagePagerAdapter constructor(
-    private val context: Context,
+    context: Context,
     private val items: MutableList<String>
 ) :
     PagerAdapter() {
@@ -37,6 +37,7 @@ class ImagePagerAdapter constructor(
         Picasso.get().load(items[position]).apply {
             fit()
             centerCrop()
+            noFade()
             placeholder(R.drawable.yelp_logo)
             into(imageView)
         }
