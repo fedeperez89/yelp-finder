@@ -16,7 +16,7 @@ abstract class SearchModule {
             ViewModelBuilder::class
         ]
     )
-    internal abstract fun taskDetailFragment(): SearchFragment
+    internal abstract fun searchFragment(): SearchFragment
 
     @Binds
     @IntoMap

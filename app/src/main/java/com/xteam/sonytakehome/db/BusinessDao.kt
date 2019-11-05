@@ -1,6 +1,5 @@
 package com.xteam.sonytakehome.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,7 +13,7 @@ interface BusinessDao {
     suspend fun insert(vararg businesses: Business)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRepos(businesses: List<Business>)
+    suspend fun insertBusinesses(businesses: List<Business>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun createBusinessIfNotExists(business: Business): Long

@@ -2,6 +2,7 @@ package com.xteam.sonytakehome.di
 
 import android.content.Context
 import com.xteam.sonytakehome.TakeHomeApplication
+import com.xteam.sonytakehome.ui.detail.BusinessDetailModule
 import com.xteam.sonytakehome.ui.search.SearchModule
 import dagger.BindsInstance
 import dagger.Component
@@ -15,6 +16,7 @@ import javax.inject.Singleton
     modules = [
         ApplicationModule::class,
         SearchModule::class,
+        BusinessDetailModule::class,
         AndroidSupportInjectionModule::class]
 )
 interface AppComponent : AndroidInjector<TakeHomeApplication> {
