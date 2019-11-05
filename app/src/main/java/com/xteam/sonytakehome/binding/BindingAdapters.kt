@@ -29,21 +29,22 @@ fun showHide(view: View, show: Boolean) {
 }
 
 @BindingAdapter("picassoImage")
-fun loadImage(view: ImageView, picassoImage: String) {
-    if (picassoImage.isBlank()) {
-        Picasso.get().load(R.drawable.yelp_logo).apply {
-            fit()
-            centerCrop()
-            into(view)
-        }
-    } else {
-        Picasso.get().load(picassoImage).apply {
-            fit()
-            centerCrop()
-            placeholder(R.drawable.yelp_logo)
-            into(view)
-        }
+fun loadImage(view: ImageView, picassoImage: String?) {
+    picassoImage?.let {
+        if (it.isBlank()) {
+            Picasso.get().load(R.drawable.yelp_logo).apply {
+                fit()
+                centerCrop()
+                into(view)
+            }
+        } else {
+            Picasso.get().load(it).apply {
+                fit()
+                centerCrop()
+                placeholder(R.drawable.yelp_logo)
+                into(view)
+            }
 
+        }
     }
-
 }

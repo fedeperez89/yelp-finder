@@ -6,10 +6,11 @@
 
     <data>
 
+        <import type="androidx.lifecycle.LiveData" />
 
         <variable
-            name="business"
-            type="com.xteam.sonytakehome.model.Business" />
+            name="viewmodel"
+            type="com.xteam.sonytakehome.ui.detail.BusinessDetailViewModel" />
 
     </data>
 
@@ -17,17 +18,74 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/yelp_logo"
+                app:picassoImage="@{viewmodel.business.image_url}" />
+
+            <RatingBar
+                android:id="@+id/item_business_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:numStars="5"
+                android:rating="0.5"
+                android:stepSize="0.5" />
+
+        </FrameLayout>
+
+
         <TextView
-            android:id="@+id/no_results_text"
+            android:id="@+id/detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nothing_to_show"
+            android:layout_marginTop="10dp"
+            android:text="@{viewmodel.business.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_image"
+            tools:text="Tony Pizza" />
+
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.business.price}"
+            app:layout_constraintStart_toStartOf="@+id/detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/detail_name"
+            tools:text="Price $$$" />
+
+        <TextView
+            android:id="@+id/detail_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{viewmodel.business.display_phone}"
+            app:layout_constraintStart_toStartOf="@+id/detail_price"
+            app:layout_constraintTop_toBottomOf="@+id/detail_price"
+            tools:text="Some description" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:onClick="@{() -> viewmodel.callBusiness()}"
+            android:src="@android:drawable/ic_menu_call"
+            android:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="247dp" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

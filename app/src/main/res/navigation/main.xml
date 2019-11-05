@@ -19,7 +19,7 @@
         android:id="@+id/businessDetailFragment"
         android:name="com.xteam.sonytakehome.ui.detail.BusinessDetailFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_detail">
+        tools:layout="@layout/fragment_business_detail">
         <argument
             android:name="businessId"
             app:argType="string" />

@@ -30,7 +30,10 @@ object ApplicationModule {
 
             Log.d("Netowrk", newRequest.url.toString())
 
-            chain.proceed(newRequest)
+            val result = chain.proceed(newRequest)
+
+            Log.d("Network result", "Result ${result.code}")
+            result
         }
     }
 
