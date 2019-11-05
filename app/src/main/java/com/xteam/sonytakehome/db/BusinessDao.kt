@@ -8,17 +8,17 @@ import androidx.room.Query
 import com.xteam.sonytakehome.model.Business
 
 @Dao
-abstract class BusinessDao {
+interface BusinessDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(vararg businesses: Business)
+    suspend fun insert(vararg businesses: Business)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertRepos(businesses: List<Business>)
+    suspend fun insertRepos(businesses: List<Business>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun createBusinessIfNotExists(business: Business): Long
+    suspend fun createBusinessIfNotExists(business: Business): Long
 
     @Query("SELECT * FROM business WHERE name like :name")
-    abstract fun load(name: String): LiveData<List<Business>>
+    suspend fun load(name: String): List<Business>
 }
