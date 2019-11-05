@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/searchFragment">
-
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.xteam.sonytakehome.ui.search.SearchFragment"
-        android:label="SearchFragment">
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
 
         <action
             android:id="@+id/action_searchFragment_to_businessDetailFragment"
-            app:destination="@id/businessDetailFragment"
-            app:popUpTo="@+id/searchFragment" />
+            app:destination="@id/businessDetailFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/businessDetailFragment"
         android:name="com.xteam.sonytakehome.ui.detail.BusinessDetailFragment"
-        android:label="{title}">
+        android:label="{title}"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="businessId"
             app:argType="string" />
@@ -26,4 +27,5 @@
             android:name="title"
             app:argType="string" />
     </fragment>
+
 </navigation>

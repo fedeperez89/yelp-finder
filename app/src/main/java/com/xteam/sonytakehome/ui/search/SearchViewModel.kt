@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.xteam.sonytakehome.model.Business
 import com.xteam.sonytakehome.repository.BusinessRepository
+import com.xteam.sonytakehome.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,8 +19,8 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
     private val businesses = MutableLiveData<List<Business>>(listOf())
     val businessList: LiveData<List<Business>> = businesses
 
-    private val _openBusinessEvent = MutableLiveData<Business>()
-    val openBusinessEvent: LiveData<Business> = _openBusinessEvent
+    private val _openBusinessEvent = MutableLiveData<Event<Business>>()
+    val openBusinessEvent: LiveData<Event<Business>> = _openBusinessEvent
 
     fun setSearchQuery(query: String) {
         viewModelScope.launch {
@@ -31,6 +32,6 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
     }
 
     fun openBusiness(business: Business) {
-        _openBusinessEvent.value = business
+        _openBusinessEvent.value = Event(business)
     }
 }

@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.xteam.sonytakehome.R
 import com.xteam.sonytakehome.databinding.FragmentSearchBinding
 import com.xteam.sonytakehome.model.Business
+import com.xteam.sonytakehome.util.EventObserver
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -54,7 +54,7 @@ class SearchFragment : DaggerFragment() {
     }
 
     private fun setupNavigation() {
-        viewModel.openBusinessEvent.observe(this, Observer {
+        viewModel.openBusinessEvent.observe(this, EventObserver {
             openBusinessDetails(it)
         })
     }
