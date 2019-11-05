@@ -1,10 +1,11 @@
 package com.xteam.sonytakehome.model
-import androidx.room.Embedded
+
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.squareup.moshi.JsonClass
 
 @Entity
+@JsonClass(generateAdapter = true)
 data class Business(
     @PrimaryKey
     val id: String,
@@ -15,7 +16,7 @@ data class Business(
     val is_closed: Boolean,
     val name: String,
     val phone: String,
-    val price: String,
+    val price: String?,
     val rating: Float,
     val review_count: Int,
     val url: String

@@ -12,6 +12,10 @@ android {
         enabled = true
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
         applicationId "com.xteam.sonytakehome"
         minSdkVersion 21
@@ -29,6 +33,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
+    }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def clientId = properties.getProperty("yelpClientId", "")
+        def apiKey = properties.getProperty("yelpAPIKEY", "")
+
+        it.buildConfigField 'String', "YELP_API_KEY", apiKey
+        it.buildConfigField 'String', "CLIENT_ID", clientId
     }
 }
 
@@ -61,6 +75,7 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"

@@ -13,6 +13,6 @@ class BusinessRepository @Inject constructor(
     private val yelpService: YelpService
 ) {
 
-    suspend fun searchBusiness(query: String) = yelpService.search(query, 34.90f, 56.16f)
+    suspend fun searchBusiness(query: String) = yelpService.search(query, 42.9f, -122f)
 
 }

@@ -24,6 +24,7 @@ class SearchFragment : DaggerFragment() {
     private val viewModel by viewModels<SearchViewModel> { viewModelFactory }
 
     private lateinit var viewDataBinding: FragmentSearchBinding
+    private lateinit var listAdapter: BusinessAdapter
 
 
     override fun onCreateView(
@@ -45,6 +46,15 @@ class SearchFragment : DaggerFragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
         listenForSearches()
+        setupListAdapter()
+    }
+
+    private fun setupListAdapter() {
+        val viewModel = viewDataBinding.viewmodel
+        if (viewModel != null) {
+            listAdapter = BusinessAdapter(viewModel)
+            viewDataBinding.businessList.adapter = listAdapter
+        }
     }
 
     private fun listenForSearches() {
