@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.xteam.sonytakehome.R
 import com.xteam.sonytakehome.databinding.FragmentBusinessDetailBinding
 import com.xteam.sonytakehome.util.EventObserver
+import com.xteam.sonytakehome.util.setDivider
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -65,6 +66,7 @@ class BusinessDetailFragment : DaggerFragment() {
         hoursAdapter = HoursAdapter()
 
         viewDataBinding.detailHoursList.apply {
+            setDivider(R.drawable.divider)
             adapter = hoursAdapter
         }
 
