@@ -7,5 +7,6 @@
     <string name="business_content_desc">Image of the business</string>
     <string name="from_to">From %s to %s</string>
     <string name="overnight">Overnight</string>
+    <string name="error">Something went wrong. Please try again</string>
 
 </resources>

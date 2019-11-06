@@ -15,13 +15,20 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
     ViewModel() {
 
     private val _dataLoading = MutableLiveData<Boolean>()
-    val dataLoading: LiveData<Boolean> = _dataLoading
+    val dataLoading: LiveData<Boolean>
+        get() = _dataLoading
 
     private val _business = MutableLiveData<BusinessDetailPresentationObject>()
-    val business: LiveData<BusinessDetailPresentationObject> = _business
+    val business: LiveData<BusinessDetailPresentationObject>
+        get() = _business
 
     private val _callEvent = MutableLiveData<Event<String>>()
-    val callEvent: LiveData<Event<String>> = _callEvent
+    val callEvent: LiveData<Event<String>>
+        get() = _callEvent
+
+    private val _error = MutableLiveData<Event<String>>()
+    val error: LiveData<Event<String>>
+        get() = _error
 
     fun setBusinessId(businessId: String) {
         viewModelScope.launch {
@@ -29,7 +36,11 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
             val result = businessRepository.businessDetails(businessId)
             when (result.status) {
                 Status.SUCCESS -> _business.postValue(convertBusinessModelToUI(result.data!!))
-                Status.ERROR -> _business.postValue(null)
+                Status.ERROR -> {
+                    _error.postValue(Event("error loading"))
+                    _business.postValue(null)
+                }
+
             }
 
             _dataLoading.postValue(false)

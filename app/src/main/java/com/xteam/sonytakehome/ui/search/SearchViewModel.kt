@@ -15,22 +15,31 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
     ViewModel() {
 
     private val _dataLoading = MutableLiveData<Boolean>()
-    val dataLoading: LiveData<Boolean> = _dataLoading
+    val dataLoading: LiveData<Boolean>
+        get() = _dataLoading
 
-    private val businesses = MutableLiveData<List<Business>>(listOf())
-    val businessList: LiveData<List<Business>> = businesses
+    private val _businesses = MutableLiveData<List<Business>>(listOf())
+    val businessList: LiveData<List<Business>>
+        get() = _businesses
 
     private val _openBusinessEvent = MutableLiveData<Event<Business>>()
-    val openBusinessEvent: LiveData<Event<Business>> = _openBusinessEvent
-    
+    val openBusinessEvent: LiveData<Event<Business>>
+        get() = _openBusinessEvent
+
+    private val _error = MutableLiveData<Event<String>>()
+    val error: LiveData<Event<String>>
+        get() = _error
 
     fun setSearchQuery(query: String) {
         viewModelScope.launch {
             _dataLoading.postValue(true)
             val result = businessRepository.searchBusiness(query)
-            when(result.status){
-                Status.SUCCESS -> businesses.postValue(result.data!!.businesses)
-                Status.ERROR -> businesses.postValue(listOf())
+            when (result.status) {
+                Status.SUCCESS -> _businesses.postValue(result.data!!.businesses)
+                Status.ERROR -> {
+                    _businesses.postValue(listOf())
+                    _error.postValue(Event("error loading"))
+                }
             }
 
             _dataLoading.postValue(false)

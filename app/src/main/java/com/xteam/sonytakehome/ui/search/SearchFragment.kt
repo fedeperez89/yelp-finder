@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.xteam.sonytakehome.R
 import com.xteam.sonytakehome.databinding.FragmentSearchBinding
 import com.xteam.sonytakehome.model.Business
@@ -50,6 +51,7 @@ class SearchFragment : DaggerFragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
         listenForSearches()
+        listenForErrors()
         setupListAdapter()
         setupNavigation()
     }
@@ -81,6 +83,13 @@ class SearchFragment : DaggerFragment() {
         }
     }
 
+    private fun listenForErrors() {
+        viewModel.error.observe(this, EventObserver {
+            Snackbar.make(viewDataBinding.coordinatorLayout, R.string.error, Snackbar.LENGTH_LONG)
+                .show()
+        })
+    }
+
     private fun listenForSearches() {
         viewDataBinding.input.setOnEditorActionListener { view: View, actionId: Int, _: KeyEvent? ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -102,8 +111,10 @@ class SearchFragment : DaggerFragment() {
 
     private fun doSearch(v: View) {
         val query = viewDataBinding.input.text.toString()
-        dismissKeyboard(v.windowToken)
-        viewModel.setSearchQuery(query)
+        if (!query.isBlank()) {
+            dismissKeyboard(v.windowToken)
+            viewModel.setSearchQuery(query)
+        }
     }
 
     private fun dismissKeyboard(windowToken: IBinder) {

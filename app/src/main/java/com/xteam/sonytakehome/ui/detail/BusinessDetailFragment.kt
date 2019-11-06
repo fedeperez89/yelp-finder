@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.xteam.sonytakehome.R
 import com.xteam.sonytakehome.databinding.FragmentBusinessDetailBinding
 import com.xteam.sonytakehome.util.EventObserver
@@ -50,8 +51,16 @@ class BusinessDetailFragment : DaggerFragment() {
         viewModel.setBusinessId(args.businessId)
 
         observeCallPressedEvent()
+        listenForErrors()
         setupHoursAdapter()
         setupPagerAdapter()
+    }
+
+    private fun listenForErrors() {
+        viewModel.error.observe(this, EventObserver {
+            Snackbar.make(viewDataBinding.coordinatorLayout, R.string.error, Snackbar.LENGTH_LONG)
+                .show()
+        })
     }
 
     private fun setupPagerAdapter() {

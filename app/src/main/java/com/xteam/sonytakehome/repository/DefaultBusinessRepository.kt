@@ -25,7 +25,7 @@ class DefaultBusinessRepository @Inject constructor(
 
     override suspend fun searchBusiness(query: String): Resource<SearchResponse> {
         return try {
-            val response = yelpService.search(query, 42.9f, -122f, 50)
+            val response = yelpService.search(query, 40.7831f, -73.9712f, 50)
             Resource.success(response)
         } catch (e: Exception) {
             Log.e("BusinessRepository", "Error making search request")
