@@ -25,6 +25,7 @@ class BusinessDetailFragment : DaggerFragment() {
 
     private lateinit var viewDataBinding: FragmentBusinessDetailBinding
     private lateinit var imageAdapter: ImagePagerAdapter
+    private lateinit var hoursAdapter: HoursAdapter
 
     private val args: BusinessDetailFragmentArgs by navArgs()
 
@@ -48,6 +49,7 @@ class BusinessDetailFragment : DaggerFragment() {
         viewModel.setBusinessId(args.businessId)
 
         observeCallPressedEvent()
+        setupHoursAdapter()
         setupPagerAdapter()
     }
 
@@ -57,6 +59,15 @@ class BusinessDetailFragment : DaggerFragment() {
             imageAdapter = ImagePagerAdapter(context!!, mutableListOf())
             viewDataBinding.detailViewPager.adapter = imageAdapter
         }
+    }
+
+    private fun setupHoursAdapter() {
+        hoursAdapter = HoursAdapter()
+
+        viewDataBinding.detailHoursList.apply {
+            adapter = hoursAdapter
+        }
+
     }
 
     private fun observeCallPressedEvent() {

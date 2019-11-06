@@ -28,8 +28,8 @@ data class SpecialHours(
 @JsonClass(generateAdapter = true)
 data class Open(
     val is_overnight: Boolean,
-    val start: Int,
-    val end: Int,
+    val start: String,
+    val end: String,
     val day: Int
 )
 

@@ -27,7 +27,7 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
         viewModelScope.launch {
             _dataLoading.postValue(true)
             val result = businessRepository.businessDetails(businessId)
-            when(result.status){
+            when (result.status) {
                 Status.SUCCESS -> _business.postValue(convertBusinessModelToUI(result.data!!))
                 Status.ERROR -> _business.postValue(null)
             }
@@ -49,6 +49,7 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
             "${it.address1}, ${it.city}, ${it.zip_code}"
         }
         val price = model.price ?: "???"
+        val hours = model.hours?.firstOrNull()?.open ?: listOf()
         return BusinessDetailPresentationObject(
             model.id,
             model.name,
@@ -58,7 +59,8 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
             photos,
             category,
             address,
-            model.phone
+            model.phone,
+            hours
         )
     }
 }

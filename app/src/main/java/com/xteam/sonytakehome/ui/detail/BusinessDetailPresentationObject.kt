@@ -1,5 +1,7 @@
 package com.xteam.sonytakehome.ui.detail
 
+import com.xteam.sonytakehome.model.Open
+
 data class BusinessDetailPresentationObject(
     val id: String,
     val name: String,
@@ -9,5 +11,6 @@ data class BusinessDetailPresentationObject(
     val photos: List<String>,
     val category: String,
     val address: String,
-    val phoneNumber: String
+    val phoneNumber: String,
+    val hours: List<Open>
 )

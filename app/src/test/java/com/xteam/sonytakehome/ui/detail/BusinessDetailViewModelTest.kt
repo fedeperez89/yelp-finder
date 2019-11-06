@@ -55,7 +55,8 @@ class BusinessDetailViewModelTest {
             listOf("image_url"),
             "Pizza place",
             "123 fake street, Springfield, 1234",
-            "123456"
+            "123456",
+            listOf()
         )
         assertEquals(expected, businessDetail)
 
