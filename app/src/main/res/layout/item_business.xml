@@ -39,11 +39,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:picassoImage="@{business.image_url}"
-                tools:src="@drawable/yelp_logo" />
+                tools:src="@drawable/yelp_logo"
+                android:contentDescription="@string/business_content_desc" />
 
             <TextView
                 android:id="@+id/item_business_title"
-                style="@style/detail_title"
+                style="@style/business_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
