@@ -7,12 +7,14 @@ import com.xteam.sonytakehome.businessDetail
 import com.xteam.sonytakehome.getOrAwaitValue
 import com.xteam.sonytakehome.repository.BusinessRepository
 import com.xteam.sonytakehome.repository.FakeBusinessRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class BusinessDetailViewModelTest {
 
     @get:Rule

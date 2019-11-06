@@ -22,7 +22,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.xteam.sonytakehome.CustomTestRunner"
         buildConfigField "String", "BASE_URL", "\"https://api.yelp.com/v3/\""
 
     }
@@ -47,8 +47,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.material:material:1.0.0'
 
@@ -89,6 +87,15 @@ dependencies {
     kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutineVersion"
+
+
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger"
 }
