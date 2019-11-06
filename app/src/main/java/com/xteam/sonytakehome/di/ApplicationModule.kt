@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.xteam.sonytakehome.BuildConfig
 import com.xteam.sonytakehome.api.YelpService
+import com.xteam.sonytakehome.repository.BusinessRepository
+import com.xteam.sonytakehome.repository.DefaultBusinessRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -70,6 +72,12 @@ object ApplicationModule {
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideBusinessRepo(repo: DefaultBusinessRepository): BusinessRepository = repo
+
 
     @Provides
     @Singleton

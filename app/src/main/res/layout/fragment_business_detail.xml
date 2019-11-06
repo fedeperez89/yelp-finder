@@ -45,6 +45,7 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_m"
                 android:numStars="5"
                 android:rating="@{viewmodel.business.rating}"
                 android:stepSize="0.5"
@@ -53,8 +54,8 @@
 
             <TextView
                 android:id="@+id/detail_name"
-                style="@style/Title"
-                android:layout_marginTop="10dp"
+                style="@style/detail_title"
+                android:layout_margin="@dimen/margin_l"
                 android:text="@{viewmodel.business.name}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_view_pager"
@@ -72,10 +73,11 @@
 
             <TextView
                 android:id="@+id/detail_price"
+                style="@style/price_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_m"
                 android:text="@{viewmodel.business.price}"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/detail_name"
                 app:layout_constraintTop_toBottomOf="@+id/detail_rating"
                 tools:text="$$$" />
@@ -84,7 +86,7 @@
                 android:id="@+id/detail_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_l"
                 android:text="@{viewmodel.business.category}"
                 app:layout_constraintStart_toStartOf="@+id/detail_price"
                 app:layout_constraintTop_toBottomOf="@+id/detail_price"
@@ -95,7 +97,7 @@
                 android:id="@+id/detail_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_l"
                 android:text="@{viewmodel.business.address}"
                 app:layout_constraintStart_toStartOf="@+id/detail_category"
                 app:layout_constraintTop_toBottomOf="@+id/detail_category"

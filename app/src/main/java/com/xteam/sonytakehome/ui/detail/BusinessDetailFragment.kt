@@ -47,11 +47,11 @@ class BusinessDetailFragment : DaggerFragment() {
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         viewModel.setBusinessId(args.businessId)
 
-        setUpEvent()
-        setupListAdapter()
+        observeCallPressedEvent()
+        setupPagerAdapter()
     }
 
-    private fun setupListAdapter() {
+    private fun setupPagerAdapter() {
         val viewModel = viewDataBinding.viewmodel
         if (viewModel != null) {
             imageAdapter = ImagePagerAdapter(context!!, mutableListOf())
@@ -59,7 +59,7 @@ class BusinessDetailFragment : DaggerFragment() {
         }
     }
 
-    private fun setUpEvent() {
+    private fun observeCallPressedEvent() {
         viewModel.callEvent.observe(this, EventObserver {
             callNumber(it)
         })

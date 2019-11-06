@@ -34,7 +34,7 @@ data class Open(
 )
 
 @JsonClass(generateAdapter = true)
-data class Categories(
+data class Category(
     val alias: String,
     val title: String
 )
@@ -64,7 +64,7 @@ data class BusinessDetail(
     val phone: String,
     val display_phone: String,
     val review_count: Int,
-    val categories: List<Categories>?,
+    val categories: List<Category>?,
     val rating: Float,
     val location: Location,
     val coordinates: Coordinates,
