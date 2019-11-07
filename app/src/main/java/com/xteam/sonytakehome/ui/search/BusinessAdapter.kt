@@ -12,7 +12,7 @@ import com.xteam.sonytakehome.databinding.ItemBusinessBinding
 import com.xteam.sonytakehome.model.Business
 
 
-@BindingAdapter("app:items")
+@BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<Business>) {
     (listView.adapter as BusinessAdapter).submitList(items)
 }

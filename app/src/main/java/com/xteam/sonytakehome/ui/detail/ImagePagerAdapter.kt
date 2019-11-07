@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 import com.xteam.sonytakehome.R
 
 
-@BindingAdapter("app:pagerItems")
+@BindingAdapter("pagerItems")
 fun setPagerItems(pager: ViewPager, items: List<String>?) {
     items?.let {
         (pager.adapter as ImagePagerAdapter).submitItems(it)

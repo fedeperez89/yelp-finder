@@ -14,30 +14,32 @@ import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 
 
-@BindingAdapter("app:hourItems")
+@BindingAdapter("hourItems")
 fun setItems(listView: RecyclerView, items: List<Open>?) {
     items?.let {
         (listView.adapter as HoursAdapter).submitList(it)
     }
 }
 
-@BindingAdapter("app:hourDay")
+@BindingAdapter("hourDay")
 fun setHours(view: TextView, day: Int) {
     view.text = DateFormatSymbols.getInstance().weekdays[day + 1]
 }
 
-@BindingAdapter("app:hourFormat")
+@BindingAdapter("hourFormat")
 fun setHoursFormat(view: TextView, open: Open) {
     val displayFormat = SimpleDateFormat("hh:mm a")
     val parseFormat = SimpleDateFormat("HHmm")
     val to = parseFormat.parse(open.start)
     val from = parseFormat.parse(open.end)
 
-    view.text = view.context.getString(
-        R.string.from_to,
-        displayFormat.format(to),
-        displayFormat.format(from)
-    )
+    if (to != null && from != null) {
+        view.text = view.context.getString(
+            R.string.from_to,
+            displayFormat.format(to),
+            displayFormat.format(from)
+        )
+    }
 
 }
 
