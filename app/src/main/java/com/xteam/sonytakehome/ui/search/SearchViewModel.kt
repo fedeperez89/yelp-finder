@@ -34,18 +34,18 @@ class SearchViewModel @Inject constructor(private val businessRepository: Busine
         get() = _error
 
     fun setSearchQuery(query: String) {
+        _dataLoading.value = true
         viewModelScope.launch {
-            _dataLoading.postValue(true)
             val result = businessRepository.searchBusiness(query)
             when (result.status) {
-                Status.SUCCESS -> _businesses.postValue(result.data!!.businesses)
+                Status.SUCCESS -> _businesses.value = result.data!!.businesses
                 Status.ERROR -> {
-                    _businesses.postValue(listOf())
-                    _error.postValue(Event("error loading"))
+                    _businesses.value = listOf()
+                    _error.value = Event("error loading")
                 }
             }
 
-            _dataLoading.postValue(false)
+            _dataLoading.value = false
         }
     }
 

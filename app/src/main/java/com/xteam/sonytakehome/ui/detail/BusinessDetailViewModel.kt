@@ -34,19 +34,19 @@ class BusinessDetailViewModel @Inject constructor(private val businessRepository
         get() = _error
 
     fun setBusinessId(businessId: String) {
+        _dataLoading.value = true
         viewModelScope.launch {
-            _dataLoading.postValue(true)
             val result = businessRepository.businessDetails(businessId)
             when (result.status) {
-                Status.SUCCESS -> _business.postValue(convertBusinessModelToUI(result.data!!))
+                Status.SUCCESS -> _business.value = convertBusinessModelToUI(result.data!!)
                 Status.ERROR -> {
-                    _error.postValue(Event("error loading"))
-                    _business.postValue(null)
+                    _error.value = Event("error loading")
+                    _business.value = null
                 }
 
             }
 
-            _dataLoading.postValue(false)
+            _dataLoading.value = false
         }
     }
 
