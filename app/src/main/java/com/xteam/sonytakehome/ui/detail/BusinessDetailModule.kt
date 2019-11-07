@@ -8,6 +8,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
+/**
+ * Module for Detail Screen.
+ */
 @Module
 abstract class BusinessDetailModule {
 

@@ -1,13 +1,15 @@
 package com.xteam.sonytakehome
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 
+/**
+ * Application's only activity. Handles toolbar and navigation.
+ */
 class MainActivity : AppCompatActivity() {
 
 
@@ -27,12 +29,6 @@ class MainActivity : AppCompatActivity() {
             appBarConfiguration
         )
 
-    }
-
-
-    override fun onBackPressed() {
-        Log.d("BACK", "On back pressed")
-        super.onBackPressed()
     }
 
 }

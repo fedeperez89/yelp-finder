@@ -8,6 +8,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
+/**
+ * Search Screen dagger module.
+ */
 @Module
 abstract class SearchModule {
 

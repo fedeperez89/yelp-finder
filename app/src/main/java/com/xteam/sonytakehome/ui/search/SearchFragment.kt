@@ -20,7 +20,9 @@ import com.xteam.sonytakehome.util.EventObserver
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-
+/**
+ * Search Fragment screen.
+ */
 class SearchFragment : DaggerFragment() {
 
     @Inject

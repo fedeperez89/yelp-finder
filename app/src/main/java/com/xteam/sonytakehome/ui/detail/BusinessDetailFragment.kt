@@ -17,6 +17,9 @@ import com.xteam.sonytakehome.util.setDivider
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
+/**
+ * Detail screen fragment.
+ */
 class BusinessDetailFragment : DaggerFragment() {
 
     @Inject

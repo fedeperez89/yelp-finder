@@ -1,7 +1,6 @@
 package com.xteam.sonytakehome.di
 
 import android.content.Context
-import android.util.Log
 import com.xteam.sonytakehome.BuildConfig
 import com.xteam.sonytakehome.api.YelpService
 import com.xteam.sonytakehome.repository.BusinessRepository
@@ -34,12 +33,8 @@ object ApplicationModule {
                 .addHeader("Authorization", "Bearer ${BuildConfig.YELP_API_KEY}")
                 .build()
 
-            Log.d("Netowrk", newRequest.url.toString())
 
-            val result = chain.proceed(newRequest)
-
-            Log.d("Network result", "Result ${result.code}")
-            result
+            chain.proceed(newRequest)
         }
     }
 

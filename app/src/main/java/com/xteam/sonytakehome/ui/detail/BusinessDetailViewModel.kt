@@ -11,6 +11,9 @@ import com.xteam.sonytakehome.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for Business Detail Screen.
+ */
 class BusinessDetailViewModel @Inject constructor(private val businessRepository: BusinessRepository) :
     ViewModel() {
 

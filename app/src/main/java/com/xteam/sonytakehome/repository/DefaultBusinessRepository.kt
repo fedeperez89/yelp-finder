@@ -7,6 +7,9 @@ import com.xteam.sonytakehome.model.BusinessDetail
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * [BusinessRepository] implementation that makes requests to the API.
+ */
 @Singleton
 class DefaultBusinessRepository @Inject constructor(
     private val yelpService: YelpService

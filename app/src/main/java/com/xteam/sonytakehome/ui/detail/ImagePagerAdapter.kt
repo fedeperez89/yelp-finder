@@ -19,6 +19,9 @@ fun setPagerItems(pager: ViewPager, items: List<String>?) {
     }
 }
 
+/**
+ * Adapter to create a simple gallery of photos.
+ */
 class ImagePagerAdapter constructor(
     context: Context,
     private val items: MutableList<String>

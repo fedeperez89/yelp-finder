@@ -15,6 +15,9 @@ fun setItems(listView: RecyclerView, items: List<Business>) {
     (listView.adapter as BusinessAdapter).submitList(items)
 }
 
+/**
+ * Adapter to display a list of businesses.
+ */
 class BusinessAdapter(private val viewModel: SearchViewModel) :
     ListAdapter<Business, BusinessAdapter.ViewHolder>(BusinessDiffCallback()) {
 

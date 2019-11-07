@@ -11,6 +11,9 @@ import com.xteam.sonytakehome.util.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for Business Search Screen.
+ */
 class SearchViewModel @Inject constructor(private val businessRepository: BusinessRepository) :
     ViewModel() {
 

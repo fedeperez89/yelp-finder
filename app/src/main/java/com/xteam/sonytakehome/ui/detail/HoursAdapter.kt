@@ -41,6 +41,9 @@ fun setHoursFormat(view: TextView, open: Open) {
 
 }
 
+/**
+ * Adapter to show operating hours.
+ */
 class HoursAdapter :
     ListAdapter<Open, HoursAdapter.ViewHolder>(HoursDiffCallBack()) {
 

@@ -3,15 +3,14 @@ package com.xteam.sonytakehome.util
 import androidx.lifecycle.Observer
 
 /**
- * Used as a wrapper for data that is exposed via a LiveData that represents an event.
+ * Wrapper for events exposed via LiveData.
  */
 open class Event<out T>(private val content: T) {
 
-    var hasBeenHandled = false
-        private set // Allow external read but not write
+    private var hasBeenHandled = false
 
     /**
-     * Returns the content and prevents its use again.
+     * Get the content and prevent further use.
      */
     fun getContentIfNotHandled(): T? {
         return if (hasBeenHandled) {
@@ -23,16 +22,13 @@ open class Event<out T>(private val content: T) {
     }
 
     /**
-     * Returns the content, even if it's already been handled.
+     * Return the content, even if it has been handled. Doing so will not mark the event as handled.
      */
     fun peekContent(): T = content
 }
 
 /**
- * An [Observer] for [Event]s, simplifying the pattern of checking if the [Event]'s content has
- * already been handled.
- *
- * [onEventUnhandledContent] is *only* called if the [Event]'s contents has not been handled.
+ * Observer to simplify observing unhandled events.
  */
 class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Observer<Event<T>> {
     override fun onChanged(event: Event<T>?) {
