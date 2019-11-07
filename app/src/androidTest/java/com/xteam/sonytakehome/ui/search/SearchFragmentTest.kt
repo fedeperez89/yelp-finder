@@ -2,8 +2,7 @@ package com.xteam.sonytakehome.ui.search
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.pressImeActionButton
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -44,7 +43,13 @@ class SearchFragmentTest {
         onView(withId(R.id.input))
             .perform(typeText("Pizza"), pressImeActionButton())
 
+        Thread.sleep(100)
+        // FIXME implement idling resources for coroutines and databinding
         onView((withText("Pizza at the Cove"))).check(matches(isDisplayed()))
+        onView((withText("Pizza at the Cove"))).perform(click())
+
+        onView(withText("$$")).check(matches(isDisplayed()))
+
     }
 
     @Test
